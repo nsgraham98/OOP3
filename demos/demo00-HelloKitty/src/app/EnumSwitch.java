@@ -18,6 +18,7 @@ public class EnumSwitch
 //		 	case BC -> // Java14+ lambda operator: -> (C# =>)
 			case BC:
 				tax = tax + 7; // PST for BC
+//				break;
 			case AB:
 				tax = tax + 5; // GST
 				break;

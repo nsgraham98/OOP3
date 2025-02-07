@@ -7,6 +7,7 @@ public class FunWithDataTypes
 	{
 		// 16-bit unicode
 		char a = 'A'; // default: 0 = '\u0000', not the same as "null"!
+		@SuppressWarnings("unused")
 		Character aWrapped = new Character( 'A' );
 		Character aWrappedAlt = 'A';
 
