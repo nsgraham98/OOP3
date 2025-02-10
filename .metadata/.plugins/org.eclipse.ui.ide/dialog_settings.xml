@@ -66,6 +66,8 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\oop3\labs\lab2StartingCode"/>
+			<item value="C:\oop3\demos\demo02-SortingAlgorithms"/>
 			<item value="C:\oop3\demos\demo01-ComplexityAnalysis"/>
 			<item value="C:\oop3\demos\demo00-HelloKitty"/>
 		</list>
