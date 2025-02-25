@@ -7,7 +7,7 @@ public class BinarySearch
 		int low = 0;
 		int high = nums.length - 1;
 		
-		while (low < high)
+		while (low <= high)
 		{
 			int i = low + (high - low) / 2;
 			

@@ -20,6 +20,30 @@ public class Driver
 			System.out.println( nums[i] );
 		}
 
+		// all 4 are implemented
+		switch(args[0])
+		{
+			case "b":
+				nums = BubbleSort.bubbleSort(nums);
+				System.out.println("Bubble Sort");
+				break;
+			case "i":
+				nums = InsertionSort.insertionSort(nums);
+				System.out.println("Insertion Sort");
+				break;
+			case "s":
+				nums = SelectionSort.selectionSort(nums);
+				System.out.println("Selection Sort");
+				break;
+			case "q":
+				QuickSort.quickSort(nums, 0, nums.length - 1);
+				System.out.println("Quick Sort");
+				break;
+		}
+		
+		for (int num : nums)
+		{
+			System.out.println(num);
+		}
 	}
-
 }
