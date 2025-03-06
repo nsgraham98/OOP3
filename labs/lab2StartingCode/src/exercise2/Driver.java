@@ -17,6 +17,7 @@ public class Driver
 		int randnum = rand.nextInt( UPPER_BOUND );
 		nums[0] = randnum;
 
+		System.out.println( nums[0] );
 		for( int i = 1; i < SIZE; i++ )
 		{
 			randnum = rand.nextInt( UPPER_BOUND );
