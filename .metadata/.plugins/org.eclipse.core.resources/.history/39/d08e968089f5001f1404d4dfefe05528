@@ -1,0 +1,27 @@
+package utilities;
+
+import java.util.Comparator;
+import shapes.Shape;
+
+public class InsertionSort {
+ 
+    // Method to perform Insertion Sort on an array of shapes in descending order
+    public static void sort(Shape[] arr, Comparator<Shape> comparator) {
+        int n = arr.length; // Get the length of the array
+ 
+        // Iterate through the array starting from the second element
+        for (int i = 1; i < n; i++) {
+            Shape key = arr[i]; // Store the current element to be inserted
+            int j = i - 1;
+ 
+            // Shift elements that are less than the key to the right (for descending order)
+            while (j >= 0 && comparator.compare(arr[j], key) < 0) {
+                arr[j + 1] = arr[j]; // Shift element to the right
+                j--; // Move to the previous element
+            }
+ 
+            // Insert the key into its correct position
+            arr[j + 1] = key;
+        }
+    }
+}

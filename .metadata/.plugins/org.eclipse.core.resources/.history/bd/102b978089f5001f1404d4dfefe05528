@@ -1,0 +1,64 @@
+package utilities;
+
+import java.util.*;
+import shapes.Shape;
+
+/**
+ * Bucket sort is a sorting technique that involves dividing elements into various groups, or buckets. 
+ * These buckets are formed by uniformly distributing the elements. Once the elements are divided into buckets, 
+ *  they can be sorted using any other sorting algorithm. 
+ * Finally, the sorted elements are gathered together in an ordered fashion.
+ * 
+ * Time Complexity:
+ * - Worst Case: O(n^2)
+ * 	- Happens when one bucket gets all the elements
+ * - Best Case: O(n+k)
+ * 	- When every bucket gets an equal number of elements
+ * Space Complexity: O(n+k) 
+ * 
+ * To call them in the driver class
+ * - BubbleSort.sort(shapes, comparator);
+ * 
+ * @author Shawn
+ * @version 1.8
+ */
+
+public class BucketSort {
+    public static void sort(Shape[] arr, Comparator<Shape> comparator) {
+        int n = arr.length;
+        if (n <= 0) return;
+
+        // Get the max and min using the comparator for descending order
+        Shape max = Arrays.stream(arr).max(comparator).get();
+        Shape min = Arrays.stream(arr).min(comparator).get();
+        
+        // Number of buckets, calculated based on range
+        int bucketCount = Math.max(1, (int) ((comparator.compare(max, min)) / n) + 1);
+
+        // Create empty buckets
+        List<List<Shape>> buckets = new ArrayList<>();
+        for (int i = 0; i < bucketCount; i++) {
+            buckets.add(new ArrayList<>());
+        }
+
+        // Place each Shape into a bucket (adjust the bucketIndex calculation for descending order)
+        for (Shape shape : arr) {
+            // You might need to adjust this based on the attribute you want to sort by (e.g., area)
+            int bucketIndex = (int) ((comparator.compare(shape, min) - comparator.compare(max, min)) / n);
+            buckets.get(bucketIndex).add(shape);
+        }
+
+        // Sort each bucket in descending order
+        for (List<Shape> bucket : buckets) {
+            bucket.sort(comparator.reversed());  // Sort in reverse order (descending)
+        }
+
+        // Collect elements from all buckets back into the original array
+        int index = 0;
+        for (List<Shape> bucket : buckets) {
+            for (Shape shape : bucket) {
+                arr[index++] = shape;
+            }
+        }
+    }
+}

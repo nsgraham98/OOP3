@@ -1,0 +1,44 @@
+package utilities;
+
+import java.util.*;
+import shapes.Shape;
+
+public class BucketSort {
+    public static void sort(Shape[] arr, Comparator<Shape> comparator) {
+        int n = arr.length;
+        if (n <= 0) return;
+
+        // Get the max and min using the comparator for descending order
+        Shape max = Arrays.stream(arr).max(comparator).get();
+        Shape min = Arrays.stream(arr).min(comparator).get();
+        
+        // Number of buckets, calculated based on range
+        int bucketCount = Math.max(1, (int) ((comparator.compare(max, min)) / n) + 1);
+
+        // Create empty buckets
+        List<List<Shape>> buckets = new ArrayList<>();
+        for (int i = 0; i < bucketCount; i++) {
+            buckets.add(new ArrayList<>());
+        }
+
+        // Place each Shape into a bucket (adjust the bucketIndex calculation for descending order)
+        for (Shape shape : arr) {
+            // You might need to adjust this based on the attribute you want to sort by (e.g., area)
+            int bucketIndex = (int) ((comparator.compare(shape, min) - comparator.compare(max, min)) / n);
+            buckets.get(bucketIndex).add(shape);
+        }
+
+        // Sort each bucket in descending order
+        for (List<Shape> bucket : buckets) {
+            bucket.sort(comparator.reversed());  // Sort in reverse order (descending)
+        }
+
+        // Collect elements from all buckets back into the original array
+        int index = 0;
+        for (List<Shape> bucket : buckets) {
+            for (Shape shape : bucket) {
+                arr[index++] = shape;
+            }
+        }
+    }
+}
